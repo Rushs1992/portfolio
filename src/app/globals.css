@@ -5,6 +5,21 @@
   --font-mono: var(--font-mono), ui-monospace, monospace;
 }
 
+@theme {
+  /* Ops-console palette */
+  --color-ink-950: #0f1115;
+  --color-ink-900: #161920;
+  --color-ink-800: #1f232b;
+  --color-ink-700: #262a33;
+  --color-ink-600: #343947;
+  --color-ink-500: #5c6270;
+  --color-mist-100: #e6e8ec;
+  --color-mist-300: #c3c7cf;
+  --color-mist-400: #9aa0ab;
+  --color-live: #3ddc84;
+  --color-down: #f26d6d;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

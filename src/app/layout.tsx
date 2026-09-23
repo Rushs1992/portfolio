@@ -11,7 +11,7 @@ const sans = IBM_Plex_Sans({
 
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500"],
   variable: "--font-mono",
 });
 
@@ -38,45 +38,49 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="bg-white text-zinc-900 antialiased">
-        <div className="mx-auto max-w-2xl px-6">
-          <header className="flex items-baseline justify-between py-10">
-            <Link href="/" className="font-medium hover:text-blue-700">
-              Rushang Shah
-            </Link>
-            <nav className="flex gap-5 text-sm text-zinc-600">
-              <Link href="/#projects" className="hover:text-zinc-900">
-                Projects
+      <body className="bg-ink-950 font-sans text-mist-100 antialiased">
+        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 md:px-12">
+          <header className="flex items-center justify-between border-b border-ink-700 py-6">
+            <div className="flex items-baseline gap-3.5">
+              <Link
+                href="/"
+                className="text-[15px] font-semibold hover:text-live"
+              >
+                Rushang Shah
+              </Link>
+              <span className="hidden font-mono text-xs text-mist-400 sm:inline">
+                shahrushang.com
+              </span>
+            </div>
+            <nav className="flex gap-5 font-mono text-[13px] text-mist-400 sm:gap-7">
+              <Link href="/#projects" className="hover:text-mist-100">
+                projects
               </Link>
               <a
                 href="/Rushang_Shah_Resume.pdf"
-                className="hover:text-zinc-900"
+                className="hover:text-mist-100"
               >
-                Résumé
+                resume
               </a>
               <a
                 href="https://github.com/Rushs1992"
-                className="hover:text-zinc-900"
+                className="hover:text-mist-100"
               >
-                GitHub
+                github
               </a>
             </nav>
           </header>
 
-          <main className="pb-24">{children}</main>
+          <main className="flex-1 pb-16">{children}</main>
 
-          <footer className="border-t border-zinc-200 py-8 text-sm text-zinc-500">
-            <p>
-              This site and every project on it run in Docker behind Nginx on a
-              single $12 VPS. Source on{" "}
-              <a
-                href="https://github.com/Rushs1992/portfolio"
-                className="underline decoration-zinc-300 underline-offset-4 hover:text-zinc-900"
-              >
-                GitHub
-              </a>
-              .
-            </p>
+          <footer className="flex flex-col gap-2 border-t border-ink-700 py-6 font-mono text-xs text-mist-400 sm:flex-row sm:justify-between">
+            <a
+              href="mailto:rushang.1992@gmail.com"
+              className="hover:text-mist-100"
+            >
+              rushang.1992@gmail.com
+            </a>
+            <span>Fremont, CA</span>
           </footer>
         </div>
       </body>
