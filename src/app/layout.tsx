@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Bodoni_Moda, Hanken_Grotesk } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const sans = IBM_Plex_Sans({
+const display = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-sans",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  variable: "--font-display",
 });
 
-const mono = IBM_Plex_Mono({
+const sans = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -22,65 +22,77 @@ export const metadata: Metadata = {
     template: "%s | Rushang Shah",
   },
   description:
-    "Software engineer building backend and full-stack systems in Node, TypeScript and Python. Every project on this site runs on a server I set up myself.",
+    "Rushang Shah, backend engineer in Fremont, CA. Three years an HVAC design engineer before software. A self-hosted site that reads its own host live.",
   openGraph: {
     title: "Rushang Shah",
     description:
-      "Backend and full-stack engineer. Live projects, self-hosted, with write-ups on the tradeoffs.",
+      "Backend engineer, formerly an HVAC design engineer. Excellent at both, for the same reason.",
     url: "https://shahrushang.com",
     siteName: "Rushang Shah",
     type: "website",
   },
 };
 
+const nav = [
+  { href: "/#specification", label: "Specification", compact: false },
+  { href: "/#movement", label: "Movement", compact: false },
+  { href: "/#development", label: "In development", compact: false },
+  { href: "/#contact", label: "Contact", compact: true },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="bg-ink-950 font-sans text-mist-100 antialiased">
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 md:px-12">
-          <header className="flex items-center justify-between border-b border-ink-700 py-6">
-            <div className="flex items-baseline gap-3.5">
-              <Link
-                href="/"
-                className="text-[15px] font-semibold hover:text-live"
-              >
-                Rushang Shah
-              </Link>
-              <span className="hidden font-mono text-xs text-mist-400 sm:inline">
-                shahrushang.com
-              </span>
-            </div>
-            <nav className="flex gap-5 font-mono text-[13px] text-mist-400 sm:gap-7">
-              <Link href="/#projects" className="hover:text-mist-100">
-                projects
-              </Link>
+    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+      <body className="bg-case-950 font-sans text-steel-100">
+        <a
+          href="#content"
+          className="engraved absolute left-6 top-3 z-50 -translate-y-24 bg-case-950 px-3 py-2 text-brass-400 transition-transform focus:translate-y-0"
+        >
+          Skip to content
+        </a>
+        <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-6 md:px-12">
+          <header className="rule-draw flex h-16 items-center justify-between">
+            <Link
+              href="/"
+              className="engraved py-2 text-steel-100 no-underline hover:text-brass-400"
+            >
+              Rushang Shah
+            </Link>
+            <nav aria-label="Sections" className="flex items-center gap-1 sm:gap-2">
+              {nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`engraved px-2 py-2 no-underline hover:text-steel-100 sm:px-3 ${
+                    item.compact ? "" : "hidden md:inline-block"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
               <a
                 href="/Rushang_Shah_Resume.pdf"
-                className="hover:text-mist-100"
+                className="engraved px-2 py-2 text-steel-100 no-underline hover:text-brass-400 sm:px-3"
               >
-                resume
-              </a>
-              <a
-                href="https://github.com/Rushs1992"
-                className="hover:text-mist-100"
-              >
-                github
+                Résumé <span className="text-steel-400">(PDF)</span>
               </a>
             </nav>
           </header>
 
-          <main className="flex-1 pb-16">{children}</main>
+          <main id="content" className="flex-1">
+            {children}
+          </main>
 
-          <footer className="flex flex-col gap-2 border-t border-ink-700 py-6 font-mono text-xs text-mist-400 sm:flex-row sm:justify-between">
+          <footer className="flex flex-col gap-3 border-t border-steel-700 py-8 sm:flex-row sm:items-center sm:justify-between">
+            <span className="engraved">Rushang Shah · Fremont, CA</span>
             <a
               href="mailto:rushang.1992@gmail.com"
-              className="hover:text-mist-100"
+              className="inline-flex min-h-6 items-center text-[0.9375rem] text-steel-300 hover:text-brass-400"
             >
               rushang.1992@gmail.com
             </a>
-            <span>Fremont, CA</span>
           </footer>
         </div>
       </body>

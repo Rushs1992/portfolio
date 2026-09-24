@@ -1,173 +1,297 @@
-import Link from "next/link";
 import { projects } from "@/data/projects";
-import { Dot, LiveStatus } from "@/components/LiveStatus";
+import { readHealth } from "@/lib/health";
+import { PowerReserve } from "@/components/PowerReserve";
+import { HostSchematic } from "@/components/HostSchematic";
+
+// Every number on this page is read from the host at request time.
+export const dynamic = "force-dynamic";
 
 export default function Home() {
+  const health = readHealth();
+  const runningDays = Math.floor(health.uptime / 86_400);
+  const inDevelopment = projects.filter((p) => p.status !== "live");
+
   return (
     <>
-      <section className="grid gap-10 py-14 md:grid-cols-12 md:gap-6 md:py-16">
-        <div className="flex flex-col gap-6 md:col-span-7">
-          <p className="font-mono text-xs text-live">
-            {"// backend · full-stack · self-hosted"}
-          </p>
-          <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight md:text-5xl">
-            I build backend systems and the tooling around them.
+      {/* Cover */}
+      <section
+        aria-labelledby="name"
+        className="grid gap-12 pt-14 pb-12 md:grid-cols-12 md:gap-8 md:pt-24 md:pb-16 lg:gap-12"
+      >
+        <div className="flex flex-col gap-8 md:col-span-7">
+          <h1
+            id="name"
+            className="font-display text-[clamp(3.25rem,7vw,6rem)] leading-[0.98] tracking-[-0.015em] text-steel-100"
+          >
+            Rushang Shah
           </h1>
-          <p className="text-lg leading-relaxed text-mist-300">
-            Software engineer in Fremont, CA. Currently at Western Allied
-            Mechanical, where I built a multi-agent LLM service that cut
-            proposal turnaround from two hours to fifteen minutes, and I own
-            the internal data platform that replaced a pile of disconnected
-            project tools.
+          <p className="max-w-[30ch] font-display text-[clamp(1.375rem,2.2vw,1.875rem)] italic leading-[1.3] text-steel-300">
+            Backend engineer. Three years an HVAC design engineer before that.
+            Excellent at both, for one reason: I size things for the load they
+            will actually see.
           </p>
-          <p className="leading-relaxed text-mist-400">
-            Before software I spent three years as a design engineer on
-            commercial HVAC systems, which is where I learned to care about
-            requirements, constraints, and things that have to keep working
-            after they ship. I work mostly in TypeScript and Python, deploy to
-            Azure and GCP at work, and run this site on a server I set up by
-            hand.
-          </p>
-          <div className="mt-2 flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <a
               href="mailto:rushang.1992@gmail.com"
-              className="inline-flex h-11 items-center rounded-md bg-mist-100 px-4.5 text-sm font-medium text-ink-950 hover:bg-white"
+              className="command bg-steel-100 text-case-950 hover:bg-white"
             >
               Email me
             </a>
             <a
+              href="/Rushang_Shah_Resume.pdf"
+              className="command border border-steel-600 text-steel-100 hover:border-brass-400"
+            >
+              Résumé (PDF)
+            </a>
+            <a
               href="https://linkedin.com/in/rushang-shah"
-              className="inline-flex h-11 items-center rounded-md border border-ink-600 px-4.5 text-sm font-medium hover:border-mist-400"
+              rel="me noopener"
+              className="command border border-steel-600 text-steel-100 hover:border-brass-400"
             >
               LinkedIn
             </a>
-            <span className="font-mono text-xs text-mist-400 sm:pl-2">
-              open to backend and full-stack roles
-            </span>
           </div>
-        </div>
-
-        <aside className="self-start md:col-span-4 md:col-start-9">
-          <Deployments />
-        </aside>
-      </section>
-
-      <section id="projects" className="flex flex-col gap-5 pt-2">
-        <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <h2 className="text-[22px] font-semibold tracking-tight">Projects</h2>
-          <p className="text-[13px] text-mist-400">
-            Each one is deployed on this server. Write-ups cover the tradeoffs.
+          <p className="text-[0.9375rem] leading-relaxed text-steel-300">
+            Open to backend and full-stack roles. Fremont, CA. Currently at
+            Western Allied Mechanical.
           </p>
         </div>
-        <ul className="grid gap-5 md:grid-cols-2">
-          {projects.map((p) => (
-            <li
-              key={p.slug}
-              className="flex flex-col gap-3.5 rounded-[10px] border border-ink-700 bg-ink-900 p-6"
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <Link
-                  href={`/projects/${p.slug}`}
-                  className="text-[19px] font-medium hover:text-live"
-                >
-                  {p.name}
-                </Link>
-                <LiveStatus status={p.status} liveUrl={p.liveUrl} />
-              </div>
-              <p className="text-sm leading-relaxed text-mist-300">
-                {p.tagline}. {p.problem}
-              </p>
-              <ul className="flex flex-wrap gap-1.5 font-mono text-[11px] text-mist-300">
-                {p.stack.map((s) => (
-                  <li key={s} className="rounded bg-ink-800 px-2 py-1">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+
+        <div className="md:col-span-5">
+          <PowerReserve initial={health} />
+        </div>
+
+        <p className="engraved rule-draw-top pt-5 md:col-span-12">
+          1 movement running{runningDays > 0 ? ` for ${runningDays} ${runningDays === 1 ? "day" : "days"}` : ""} ·{" "}
+          {inDevelopment.length} references in development · every number on
+          this page is read from the host that serves it
+        </p>
       </section>
 
-      <section className="mt-12 grid gap-6 border-t border-ink-700 pt-8 sm:grid-cols-3 sm:gap-5">
-        <InfraCell
-          label="Runtime"
-          value="Docker"
-          note="This site and every project run in containers."
-        />
-        <InfraCell
-          label="Edge"
-          value="Nginx"
-          note="One reverse proxy in front of all subdomains."
-        />
-        <InfraCell
-          label="Host"
-          value="Single $12 VPS"
-          note={
-            <>
-              Set up by hand. Source on{" "}
-              <a
-                href="https://github.com/Rushs1992/portfolio"
-                className="text-mist-300 underline underline-offset-[3px] hover:text-mist-100"
+      {/* Specification */}
+      <section
+        id="specification"
+        aria-labelledby="specification-title"
+        className="scroll-mt-20 pt-8 pb-16 md:pt-12 md:pb-24"
+      >
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <h2
+            id="specification-title"
+            className="font-display text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.01em] md:col-span-4"
+          >
+            Specification
+          </h2>
+          <dl className="divide-y divide-steel-700 border-y border-steel-700 md:col-span-8">
+            <SpecRow term="Functions">
+              Backend and full-stack systems: APIs, data platforms, LLM
+              orchestration, and the tooling around them.
+            </SpecRow>
+            <SpecRow term="Materials" figure="6">
+              TypeScript, Python, Node, PostgreSQL, Redis, Docker.
+            </SpecRow>
+            <SpecRow term="Deployment" figure="1 VPS · $12 / mo">
+              Azure and GCP at work. This site runs on a single VPS I set up by
+              hand.
+            </SpecRow>
+            <SpecRow term="Origin" figure="3 yr">
+              Three years as a design engineer on commercial HVAC systems.
+              Requirements, physical constraints, and equipment that has to keep
+              working after handoff. The same instinct runs through everything
+              below.
+            </SpecRow>
+            <SpecRow term="Current duty" figure="2 h → 15 min">
+              Western Allied Mechanical. Built a multi-agent LLM service that
+              cut proposal turnaround from two hours to fifteen minutes. Own the
+              internal data platform that replaced a set of disconnected
+              project tools.
+            </SpecRow>
+            <SpecRow term="Condition">
+              Open to backend and full-stack roles. Fremont, CA.
+            </SpecRow>
+          </dl>
+        </div>
+      </section>
+
+      {/* Movement */}
+      <section
+        id="movement"
+        aria-labelledby="movement-title"
+        className="scroll-mt-20 border-t border-steel-700 py-16 md:py-24"
+      >
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <div className="flex flex-col gap-4 md:col-span-4">
+            <h2
+              id="movement-title"
+              className="font-display text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.01em]"
+            >
+              Movement
+            </h2>
+            <p className="max-w-[42ch] text-[1.0625rem] leading-relaxed text-steel-300">
+              One built work, running: this site. Everything it reports about
+              itself comes from the host that serves it, not from a badge.
+            </p>
+          </div>
+          <div className="flex flex-col gap-8 md:col-span-8">
+            <HostSchematic />
+            <dl className="divide-y divide-steel-700 border-y border-steel-700">
+              <SpecRow term="Reference">shahrushang.com</SpecRow>
+              <SpecRow term="Structure">
+                Docker containers behind one Nginx reverse proxy. Next.js 16,
+                TypeScript.
+              </SpecRow>
+              <SpecRow term="Host" figure="$12 / mo">
+                Single VPS, $12 a month, set up by hand. Running{" "}
+                {runningDays > 0
+                  ? `for ${runningDays} ${runningDays === 1 ? "day" : "days"}`
+                  : "since today"}
+                .
+              </SpecRow>
+              <SpecRow term="Readings" figure="60 s">
+                <a
+                  href="/api/health"
+                  className="text-steel-100 hover:text-brass-400"
+                >
+                  Read the health endpoint
+                </a>
+                <span className="text-steel-400"> · polled every sixty seconds</span>
+              </SpecRow>
+              <SpecRow term="Source">
+                <a
+                  href="https://github.com/Rushs1992/portfolio"
+                  rel="noopener"
+                  className="text-steel-100 hover:text-brass-400"
+                >
+                  github.com/Rushs1992/portfolio
+                </a>
+              </SpecRow>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      {/* In development */}
+      <section
+        id="development"
+        aria-labelledby="development-title"
+        className="scroll-mt-20 border-t border-steel-700 py-16 md:py-24"
+      >
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <div className="flex flex-col gap-4 md:col-span-4">
+            <h2
+              id="development-title"
+              className="font-display text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.01em]"
+            >
+              In development
+            </h2>
+            <p className="max-w-[42ch] text-[1.0625rem] leading-relaxed text-steel-300">
+              Four references in design. None is running yet, so none is listed
+              as running. Each will be commissioned on this host with a
+              write-up of the tradeoffs.
+            </p>
+          </div>
+          <ul className="divide-y divide-steel-700 border-y border-steel-700 md:col-span-8">
+            {inDevelopment.map((p) => (
+              <li
+                key={p.slug}
+                className="grid gap-2 py-5 md:grid-cols-[11rem_1fr] md:gap-8"
               >
-                GitHub
+                <div className="flex flex-col gap-1">
+                  <span className="text-[1.0625rem] font-medium text-steel-100">
+                    {p.name}
+                  </span>
+                  <span className="engraved">In development</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-steel-300">
+                    {p.plain}
+                  </p>
+                  <p className="text-[0.9375rem] text-steel-400">
+                    {p.stack.join(" · ")}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section
+        id="contact"
+        aria-labelledby="contact-title"
+        className="scroll-mt-20 border-t border-steel-700 py-16 md:py-24"
+      >
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <h2
+            id="contact-title"
+            className="font-display text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.01em] md:col-span-4"
+          >
+            Contact
+          </h2>
+          <dl className="divide-y divide-steel-700 border-y border-steel-700 md:col-span-8">
+            <SpecRow term="Email">
+              <a
+                href="mailto:rushang.1992@gmail.com"
+                className="text-steel-100 hover:text-brass-400"
+              >
+                rushang.1992@gmail.com
               </a>
-              .
-            </>
-          }
-        />
+            </SpecRow>
+            <SpecRow term="LinkedIn">
+              <a
+                href="https://linkedin.com/in/rushang-shah"
+                rel="me noopener"
+                className="text-steel-100 hover:text-brass-400"
+              >
+                linkedin.com/in/rushang-shah
+              </a>
+            </SpecRow>
+            <SpecRow term="GitHub">
+              <a
+                href="https://github.com/Rushs1992"
+                rel="me noopener"
+                className="text-steel-100 hover:text-brass-400"
+              >
+                github.com/Rushs1992
+              </a>
+            </SpecRow>
+            <SpecRow term="Résumé">
+              <a
+                href="/Rushang_Shah_Resume.pdf"
+                className="text-steel-100 hover:text-brass-400"
+              >
+                Rushang_Shah_Resume.pdf
+              </a>
+            </SpecRow>
+            <SpecRow term="Location">Fremont, CA</SpecRow>
+          </dl>
+        </div>
       </section>
     </>
   );
 }
 
-function Deployments() {
-  return (
-    <div className="flex flex-col overflow-hidden rounded-[10px] border border-ink-700 bg-ink-900">
-      <div className="flex items-center justify-between border-b border-ink-700 px-4.5 py-3.5">
-        <span className="text-[13px] font-semibold">Deployments</span>
-        <span className="font-mono text-[11px] text-mist-400">
-          checked live · every 60s
-        </span>
-      </div>
-      <ul className="divide-y divide-ink-700 font-mono text-xs">
-        <li className="flex items-center justify-between gap-4 px-4.5 py-3">
-          <span>shahrushang.com</span>
-          <Dot label="live" tone="up" />
-        </li>
-        {projects.map((p) => (
-          <li
-            key={p.slug}
-            className="flex items-center justify-between gap-4 px-4.5 py-3"
-          >
-            <span className="truncate">{p.liveUrl.replace("https://", "")}</span>
-            <LiveStatus status={p.status} liveUrl={p.liveUrl} />
-          </li>
-        ))}
-      </ul>
-      <div className="border-t border-ink-700 px-4.5 py-3 font-mono text-[11px] text-mist-400">
-        docker · nginx · 1 vps · $12/mo
-      </div>
-    </div>
-  );
-}
-
-function InfraCell({
-  label,
-  value,
-  note,
+function SpecRow({
+  term,
+  figure,
+  children,
 }: {
-  label: string;
-  value: string;
-  note: React.ReactNode;
+  term: string;
+  /** The rating as a number, right-aligned in tabular figures. */
+  figure?: string;
+  children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-mist-400">
-        {label}
-      </span>
-      <span className="text-lg font-medium">{value}</span>
-      <span className="text-[13px] text-mist-400">{note}</span>
+    <div className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1.5 py-5 md:grid-cols-[11rem_1fr_auto] md:gap-8">
+      <dt className="engraved col-start-1 row-start-1 pt-1">{term}</dt>
+      <dd className="col-span-2 max-w-[62ch] text-[1.0625rem] leading-relaxed text-steel-300 md:col-span-1 md:col-start-2 md:row-start-1">
+        {children}
+      </dd>
+      {figure ? (
+        <dd className="col-start-2 row-start-1 whitespace-nowrap text-right text-[1.0625rem] leading-relaxed text-steel-100 md:col-start-3 md:min-w-[7rem]">
+          {figure}
+        </dd>
+      ) : null}
     </div>
   );
 }

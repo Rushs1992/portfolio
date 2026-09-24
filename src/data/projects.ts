@@ -3,6 +3,8 @@ export type ProjectStatus = "live" | "building" | "planned";
 export type Project = {
   slug: string;
   name: string;
+  /** One line anyone can read, no stack words. */
+  plain: string;
   tagline: string;
   status: ProjectStatus;
   liveUrl: string;
@@ -18,6 +20,8 @@ export const projects: Project[] = [
   {
     slug: "tasks",
     name: "Task API",
+    plain:
+      "A multi-user task manager backend with the unglamorous parts done properly: sign-in, validation, migrations, tests.",
     tagline: "REST API with JWT auth, Postgres, and a full test suite",
     status: "planned",
     liveUrl: "https://tasks.shahrushang.com",
@@ -31,6 +35,8 @@ export const projects: Project[] = [
   {
     slug: "go",
     name: "URL shortener",
+    plain:
+      "Short links that redirect fast, with the rate limiter written by hand instead of pulled from a package.",
     tagline: "Redis-backed redirects with a hand-written rate limiter",
     status: "planned",
     liveUrl: "https://go.shahrushang.com",
@@ -44,6 +50,8 @@ export const projects: Project[] = [
   {
     slug: "chat",
     name: "Real-time chat",
+    plain:
+      "Rooms, message history, and presence, built to run on more than one server from the first day.",
     tagline: "WebSockets, persisted messages, Redis pub/sub across instances",
     status: "planned",
     liveUrl: "https://chat.shahrushang.com",
@@ -57,6 +65,8 @@ export const projects: Project[] = [
   {
     slug: "jobs",
     name: "Background jobs",
+    plain:
+      "Upload a file, get it processed later, with retries, a dead-letter queue, and a live dashboard.",
     tagline: "Queue with retries, backoff, and a live dashboard",
     status: "planned",
     liveUrl: "https://jobs.shahrushang.com",
