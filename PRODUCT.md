@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Two audiences, weighted equally, both arriving during a job search for backend and full-stack roles:
+Two audiences, weighted equally, both arriving during a job search for software, solutions, and backend engineering roles:
 
 - **Hiring managers and senior engineers** who will read the project write-ups and judge the engineering tradeoffs before or after an interview. They want to see how Rushang reasons about architecture, failure modes, and scaling, not just that something exists.
 - **Recruiters and screeners** spending under a minute deciding whether to forward the resume. They need the role fit, location, stack, and contact path within the first viewport.
@@ -17,13 +17,13 @@ The site must succeed for a 30-second skim and a 10-minute deep read without spl
 
 ## Product Purpose
 
-A personal portfolio for Rushang Shah, a software engineer in Fremont, CA, built to convert visits into interviews for backend and full-stack roles. It presents live, self-hosted backend projects with write-ups, current professional work, and a direct contact path (email, LinkedIn, resume, GitHub).
+A personal portfolio for Rushang Shah, a software and solutions engineer in Fremont, CA, built to convert visits into interviews for software, solutions, and backend engineering roles. It presents live, self-hosted backend projects with write-ups, current professional work, and a direct contact path (email, LinkedIn, resume, GitHub).
 
 Success is a visitor reaching out (email or LinkedIn) or forwarding the resume, having formed the impression that Rushang ships production systems and reasons carefully about them.
 
 ## Positioning
 
-**Systems thinking across disciplines, and excellence in both.** Rushang spent three years as a design engineer on commercial HVAC systems before software, and excelled at it. Mechanical systems and software systems share the same failure modes; the claim is a practiced eye for load, capacity, and margins that a career-long software engineer does not have. The site must make two things equally clear to recruiters, hiring managers, and other visitors: Rushang excelled as an HVAC designer, and Rushang is a great software engineer today. Neither identity is a footnote to the other. The HVAC years are credibility, not backstory; the software work is the present and the ask.
+**A software and solutions engineer who sizes systems for real load (repositioned 2026-09-23).** The headline identity is software and solutions engineering: backend systems, LLM services, and the internal platforms a business runs on, taken end to end from problem to shipped system. The mechanical-engineering background (three years as a design engineer before software) is supporting evidence for that judgment, stated once and briefly, not a co-equal identity. The site must not lead with HVAC in the hero, metadata, or social preview; it appears only as a single "Origin" row in the specification.
 
 Supporting proof, secondary to the positioning: every project on the site actually runs on a server Rushang set up by hand, with live health status checked from the site itself.
 
@@ -63,14 +63,14 @@ Supporting proof, secondary to the positioning: every project on the site actual
 
 - **Name:** Rushang Shah. Domain `shahrushang.com`.
 - **Voice (as currently written):** first person, plain, specific, unhyped. Sentences state what was built and what it did. Self-deprecating precision ("the boring parts properly", "a pile of disconnected project tools") rather than superlatives.
-- **Role statement:** "open to backend and full-stack roles". Primary languages TypeScript and Python. Deploys to Azure and GCP at work.
+- **Role statement:** "open to software, solutions, and backend engineering roles". Primary languages TypeScript and Python. Deploys to Azure and GCP at work.
 - **Fonts in use (since the 2026-09-23 redesign):** Bodoni Moda (display) and Hanken Grotesk (text) via `next/font`; static TrueType copies in `src/assets/fonts/` for the Open Graph image. DESIGN.md is the authority on their use.
 - No logo or mark exists. No headshot exists in the repository.
 
 ## Evidence on Hand
 
 - **Current employer and headline result, cleared for public display:** Western Allied Mechanical, where Rushang built a multi-agent LLM service that cut proposal turnaround from two hours to fifteen minutes, and owns the internal data platform that replaced disconnected project-management tools.
-- **Prior career:** three years as a design engineer on commercial HVAC systems.
+- **Prior career:** three years as a mechanical design engineer (commercial HVAC). Mention sparingly; see Positioning.
 - **Resume:** `public/Rushang_Shah_Resume.pdf` (current; text is not machine-extractable from the PDF as embedded).
 - **Contact and profiles (current and public):** `rushang.1992@gmail.com`, `github.com/Rushs1992`, `linkedin.com/in/rushang-shah`. Portfolio source at `github.com/Rushs1992/portfolio`.
 - **Infrastructure facts:** Docker, Nginx, single $12/month VPS set up by hand.
@@ -81,7 +81,7 @@ Supporting proof, secondary to the positioning: every project on the site actual
 1. **Prove it live.** Any claim of a running system is backed by a real health check rendered on the page. Never show a static "live" badge for something that is not being checked.
 2. **Two speeds, one page.** Role fit, location, and contact must land in the first viewport for a skimmer; depth lives one click away in write-ups for the reader. Do not fork the site into "quick" and "detailed" versions.
 3. **Engineering judgment over feature lists.** Write-ups foreground tradeoffs, capacity, and failure modes. A stack list is context, not the argument.
-4. **The HVAC lens is the frame, not the footnote.** Present software decisions in terms of load, margins, and what must keep working after handoff.
+4. **Lead with software, keep the engineering lens.** Present software decisions in terms of load, margins, and what must keep working after handoff, without leaning on the HVAC label to do it.
 5. **Say only what is true today.** Statuses reflect actual deployment state. Planned work is labeled planned. Empty write-up fields are omitted, not padded.
 
 ## Accessibility & Inclusion

@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     template: "%s | Rushang Shah",
   },
   description:
-    "Rushang Shah, backend engineer in Fremont, CA. Three years an HVAC design engineer before software. A self-hosted site that reads its own host live.",
+    "Rushang Shah, software and solutions engineer in Fremont, CA. Backend systems, LLM services, and internal platforms. A self-hosted site that reads its own host live.",
   openGraph: {
     title: "Rushang Shah",
     description:
-      "Backend engineer, formerly an HVAC design engineer. Excellent at both, for the same reason.",
+      "Software and solutions engineer. Backend systems, LLM services, and internal platforms, sized for the load they will actually see.",
     url: "https://shahrushang.com",
     siteName: "Rushang Shah",
     type: "website",

@@ -1,6 +1,6 @@
 ---
 name: Rushang Shah
-description: A watch-movement specification page for a backend engineer; every rating a number, the power reserve the live host.
+description: A watch-movement specification page for a software and solutions engineer; every rating a number, the power reserve the live host.
 colors:
   case-950: "#0f1418"
   case-900: "#151b21"

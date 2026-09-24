@@ -26,9 +26,9 @@ export default function Home() {
             Rushang Shah
           </h1>
           <p className="max-w-[30ch] font-display text-[clamp(1.375rem,2.2vw,1.875rem)] italic leading-[1.3] text-steel-300">
-            Backend engineer. Three years an HVAC design engineer before that.
-            Excellent at both, for one reason: I size things for the load they
-            will actually see.
+            Software and solutions engineer. I build the backend systems, LLM
+            services, and internal platforms a business runs on, and I size
+            them for the load they will actually see.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a
@@ -52,8 +52,8 @@ export default function Home() {
             </a>
           </div>
           <p className="text-[0.9375rem] leading-relaxed text-steel-300">
-            Open to backend and full-stack roles. Fremont, CA. Currently at
-            Western Allied Mechanical.
+            Open to software, solutions, and backend engineering roles.
+            Fremont, CA. Currently at Western Allied Mechanical.
           </p>
         </div>
 
@@ -83,8 +83,9 @@ export default function Home() {
           </h2>
           <dl className="divide-y divide-steel-700 border-y border-steel-700 md:col-span-8">
             <SpecRow term="Functions">
-              Backend and full-stack systems: APIs, data platforms, LLM
-              orchestration, and the tooling around them.
+              Software and solutions engineering: backend systems, APIs, data
+              platforms, LLM orchestration, and the internal tooling that turns
+              a business problem into something that ships.
             </SpecRow>
             <SpecRow term="Materials" figure="6">
               TypeScript, Python, Node, PostgreSQL, Redis, Docker.
@@ -93,20 +94,21 @@ export default function Home() {
               Azure and GCP at work. This site runs on a single VPS I set up by
               hand.
             </SpecRow>
-            <SpecRow term="Origin" figure="3 yr">
-              Three years as a design engineer on commercial HVAC systems.
-              Requirements, physical constraints, and equipment that has to keep
-              working after handoff. The same instinct runs through everything
-              below.
-            </SpecRow>
             <SpecRow term="Current duty" figure="2 h → 15 min">
               Western Allied Mechanical. Built a multi-agent LLM service that
               cut proposal turnaround from two hours to fifteen minutes. Own the
               internal data platform that replaced a set of disconnected
-              project tools.
+              project tools. Solutions work end to end: find the bottleneck,
+              design the system, ship it, keep it running.
+            </SpecRow>
+            <SpecRow term="Origin" figure="3 yr">
+              Started as a mechanical design engineer. Three years of
+              requirements, physical constraints, and equipment that had to
+              keep working after handoff. Software got the same instinct.
             </SpecRow>
             <SpecRow term="Condition">
-              Open to backend and full-stack roles. Fremont, CA.
+              Open to software, solutions, and backend engineering roles.
+              Fremont, CA.
             </SpecRow>
           </dl>
         </div>

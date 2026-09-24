@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 export const alt =
-  "Rushang Shah. Backend engineer, formerly an HVAC design engineer.";
+  "Rushang Shah. Software and solutions engineer in Fremont, CA.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -54,8 +54,8 @@ export default async function Image() {
               fontFamily: "Hanken Grotesk",
             }}
           >
-            Backend engineer. Three years an HVAC design engineer before that.
-            Excellent at both, for one reason.
+            Software and solutions engineer. Backend systems, LLM services,
+            and internal platforms, sized for the load they will actually see.
           </div>
         </div>
         <div
