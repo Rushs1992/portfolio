@@ -25,7 +25,7 @@ export default function Home() {
           >
             Rushang Shah
           </h1>
-          <p className="max-w-[30ch] font-display text-[clamp(1.375rem,2.2vw,1.875rem)] italic leading-[1.3] text-steel-300">
+          <p className="max-w-[36ch] text-[clamp(1.25rem,1.8vw,1.5rem)] leading-[1.45] text-steel-300">
             Software and solutions engineer. I build the backend systems, LLM
             services, and internal platforms a business runs on, and I size
             them for the load they will actually see.

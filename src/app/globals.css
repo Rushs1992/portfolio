@@ -2,6 +2,8 @@
 
 @theme inline {
   --font-display: var(--font-display), "Bodoni Moda", Didot, "Times New Roman", serif;
+  /* Pin a text-sized optical master so hairlines stay visible on the dark case */
+  --font-display--font-variation-settings: "opsz" 24;
   --font-sans: var(--font-sans), "Hanken Grotesk", system-ui, sans-serif;
 }
 
@@ -32,6 +34,11 @@
     color: var(--color-steel-100);
     font-variant-numeric: tabular-nums;
     -webkit-font-smoothing: antialiased;
+  }
+
+  .font-display {
+    font-optical-sizing: none;
+    font-weight: 500;
   }
 
   ::selection {

@@ -17,32 +17,32 @@ typography:
   display:
     fontFamily: "Bodoni Moda, Didot, Times New Roman, serif"
     fontSize: "clamp(3.25rem, 7vw, 6rem)"
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 0.98
     letterSpacing: "-0.015em"
-    fontVariation: "opsz auto"
-  display-italic:
-    fontFamily: "Bodoni Moda, Didot, Times New Roman, serif"
-    fontSize: "clamp(1.375rem, 2.2vw, 1.875rem)"
+    fontVariation: "opsz 24"
+  lede:
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontSize: "clamp(1.25rem, 1.8vw, 1.5rem)"
     fontWeight: 400
-    lineHeight: 1.3
+    lineHeight: 1.45
     letterSpacing: "normal"
   headline:
     fontFamily: "Bodoni Moda, Didot, Times New Roman, serif"
     fontSize: "clamp(2rem, 3.5vw, 2.75rem)"
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 1.05
     letterSpacing: "-0.01em"
   reading:
     fontFamily: "Bodoni Moda, Didot, Times New Roman, serif"
     fontSize: "2.25rem"
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 1
     letterSpacing: "normal"
   counter:
     fontFamily: "Bodoni Moda, Didot, Times New Roman, serif"
     fontSize: "1.5rem"
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 1
     letterSpacing: "normal"
   body:
